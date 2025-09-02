@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Status UI</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        margin: 2rem;
+      }
+      .card {
+        max-width: 540px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .status {
+        font-size: 1.1rem;
+        margin: 0.25rem 0;
+      }
+      .muted {
+        color: #6b7280;
+      }
+      code {
+        background: #f3f4f6;
+        padding: 0.1rem 0.3rem;
+        border-radius: 6px;
+      }
+      .ok {
+        color: #059669;
+      }
+      .error {
+        color: #dc2626;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Server status</h1>
+      <p id="status" class="status muted">Checking…</p>
+      <p class="muted">Backend: <code>http://localhost:3000/status</code></p>
+      <p id="time" class="muted"></p>
+    </div>
+    <script src="/script.js" defer></script>
+  </body>
+</html>
