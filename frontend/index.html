@@ -40,10 +40,35 @@
   </head>
   <body>
     <div class="card">
-      <h1>Server status</h1>
-      <p id="status" class="status muted">Checking…</p>
-      <p class="muted">Backend: <code>http://localhost:3000/status</code></p>
-      <p id="time" class="muted"></p>
+      <h1>Загрузить файлы</h1>
+      <form id="uploadForm">
+        <div style="margin: 0.5rem 0">
+          <label for="reportFile">Файл отчета (.xls)</label><br />
+          <input
+            id="reportFile"
+            name="reportFile"
+            type="file"
+            accept=".xls"
+            required
+          />
+        </div>
+        <div style="margin: 0.5rem 0">
+          <label for="layoutFile">Файл разбивки (.dxf / .dwg)</label><br />
+          <input
+            id="layoutFile"
+            name="layoutFile"
+            type="file"
+            accept=".dxf,.dwg"
+            required
+          />
+        </div>
+        <div style="margin: 0.5rem 0">
+          <label for="otherFiles">Остальные файлы (любые)</label><br />
+          <input id="otherFiles" name="otherFiles" type="file" multiple />
+        </div>
+        <button type="submit">Загрузить</button>
+      </form>
+      <p id="result" class="status muted" style="margin-top: 0.75rem"></p>
     </div>
     <script src="/script.js" defer></script>
   </body>
