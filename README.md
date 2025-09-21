@@ -1,6 +1,6 @@
 # Doc to Dirs
 
-A simple web application with Express backend and HTML frontend.
+Create particular directory structure for uploaded files
 
 ## Quick Start
 
