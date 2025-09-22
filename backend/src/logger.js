@@ -2,7 +2,7 @@ import winston from "winston";
 
 const levelFromEnv = process.env.LOG_LEVEL?.toLowerCase?.() || "info";
 
-const logger = winston.createLogger({
+export const logger = winston.createLogger({
   level: levelFromEnv,
   levels: winston.config.npm.levels,
   format: winston.format.combine(
@@ -18,8 +18,6 @@ const logger = winston.createLogger({
   ],
   exitOnError: false,
 });
-
-export { logger };
 
 export function getLevel() {
   return logger.level;

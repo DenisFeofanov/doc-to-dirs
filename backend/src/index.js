@@ -5,6 +5,7 @@ import fs from "fs";
 import multer from "multer";
 import path from "path";
 import { getLevel, logger } from "./logger.js";
+import router from "./router.js";
 
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
@@ -25,16 +26,7 @@ app.use((req, _res, next) => {
   logger.info("Incoming request", { method: req.method, path: req.path });
   next();
 });
-
-app.get("/status", (_req, res) => {
-  const payload = { status: "ok", time: new Date().toISOString() };
-  logger.debug("Reporting status", payload);
-  res.json(payload);
-});
-
-app.get("/", (_req, res) => {
-  res.type("text").send("Backend is running. See /status");
-});
+app.use("/", router);
 
 // POST /upload expects three fields:
 // - reportFile: single, .xls
