@@ -1,10 +1,10 @@
-import express from "express";
 import cors from "cors";
-import multer from "multer";
-import fs from "fs";
-import path from "path";
 import { randomUUID } from "crypto";
-import { logger, getLevel } from "./logger.js";
+import express from "express";
+import fs from "fs";
+import multer from "multer";
+import path from "path";
+import { getLevel, logger } from "./logger.js";
 
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
@@ -21,18 +21,18 @@ fs.mkdirSync(finalUploadDir, { recursive: true });
 // Configure multer to store incoming files in a temporary directory first
 const upload = multer({ dest: tmpUploadDir });
 
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   logger.info("Incoming request", { method: req.method, path: req.path });
   next();
 });
 
-app.get("/status", (req, res) => {
+app.get("/status", (_req, res) => {
   const payload = { status: "ok", time: new Date().toISOString() };
   logger.debug("Reporting status", payload);
   res.json(payload);
 });
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.type("text").send("Backend is running. See /status");
 });
 
@@ -53,7 +53,7 @@ app.post(
         if (typeof originalName !== "string" || originalName.length === 0) {
           return originalName;
         }
-        const isLatin1Only = /^[\x00-\xff]*$/.test(originalName);
+        const isLatin1Only = /^[\x20-\xff]*$/.test(originalName);
         const decoded = Buffer.from(originalName, "latin1").toString("utf8");
         const hasReplacement = decoded.includes("\ufffd");
         const hasCyrillic = /[\u0400-\u04FF]/.test(decoded);
@@ -106,7 +106,7 @@ app.post(
         const original = file.originalname || file.filename;
         const fixed = fixFilenameEncoding(original);
         const base = path.basename(fixed);
-        const safeName = base.replace(/[\\\/:*?"<>|]/g, "_");
+        const safeName = base.replace(/[\\/:*?"<>|]/g, "_");
         const toPath = path.join(targetDir, safeName);
         await fs.promises.rename(fromPath, toPath);
         return toPath;
@@ -129,7 +129,7 @@ app.post(
   }
 );
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, _next) => {
   logger.error("Unhandled error", { message: err?.message, stack: err?.stack });
   res.status(500).json({ error: "Internal Server Error" });
 });
