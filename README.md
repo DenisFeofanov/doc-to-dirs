@@ -4,18 +4,18 @@ Create particular directory structure for uploaded files
 
 ## Quick Start
 
-1. **Run the application**
+1. Run the application
 
    ```bash
    docker compose up -d
    ```
 
-2. **Access the services**
+2. Access the services
 
    - Frontend: http://localhost:8080
    - Backend API: http://localhost:3000
 
-3. **Stop the application**
+3. Stop the application
    ```bash
    docker compose down
    ```
@@ -31,3 +31,17 @@ docker compose logs backend
 # Pretty-print JSON logs with jq
 docker compose logs --no-log-prefix backend | jq -Rr 'fromjson? | .'
 ```
+
+## Development
+
+### Backend
+
+`cd backend`
+
+1. Install Node.js and dependencies
+
+`npm ci`
+
+2. Run server locally
+
+`npm run start`
