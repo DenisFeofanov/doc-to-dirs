@@ -1,30 +1,30 @@
 const form = document.getElementById("uploadForm");
-const resultEl = document.getElementById("result");
+const resultElement = document.getElementById("result");
 
 form?.addEventListener("submit", async e => {
   e.preventDefault();
-  resultEl.classList.remove("ok", "error");
-  resultEl.classList.add("muted");
-  resultEl.textContent = "Загрузка…";
+  resultElement.classList.remove("ok", "error");
+  resultElement.classList.add("muted");
+  resultElement.textContent = "Загрузка…";
 
   const formData = new FormData(form);
   try {
-    const resp = await fetch("http://localhost:3000/upload", {
+    const response = await fetch("http://localhost:3000/upload", {
       method: "POST",
       body: formData,
     });
-    if (!resp.ok) {
-      const err = await resp.json().catch(() => ({}));
-      throw new Error(err?.error || `HTTP ${resp.status}`);
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err?.error || `HTTP ${response.status}`);
     }
-    const data = await resp.json();
-    resultEl.textContent = `ID загрузки: ${data.uploadId}`;
-    resultEl.classList.remove("muted");
-    resultEl.classList.add("ok");
+    const data = await response.json();
+    resultElement.textContent = `ID загрузки: ${data.uploadId}`;
+    resultElement.classList.remove("muted");
+    resultElement.classList.add("ok");
     form.reset();
   } catch (err) {
-    resultEl.textContent = `Ошибка: ${err.message}`;
-    resultEl.classList.remove("muted");
-    resultEl.classList.add("error");
+    resultElement.textContent = `Ошибка: ${err.message}`;
+    resultElement.classList.remove("muted");
+    resultElement.classList.add("error");
   }
 });
