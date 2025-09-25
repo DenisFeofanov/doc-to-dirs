@@ -1,4 +1,4 @@
-import { logger } from "../logger";
+import { logger } from "../logger.js";
 
 export default () => {
   const payload = { status: "ok", time: new Date().toISOString() };
