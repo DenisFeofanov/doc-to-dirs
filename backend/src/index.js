@@ -40,5 +40,9 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(port, () => {
-  logger.info("Server started", { port, level: getLevel() });
+  logger.info("Server started", {
+    port,
+    level: getLevel(),
+    nodeEnv: process.env.NODE_ENV,
+  });
 });

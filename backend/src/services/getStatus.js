@@ -2,8 +2,9 @@ import { logger } from "../logger.js";
 
 export default () => {
   logger.debug("Getting status");
-  const payload = { status: "ok", time: new Date().toISOString() };
-  logger.info("Status retrieved", { payload });
 
-  return payload;
+  const status = { backendCondition: "ok", time: new Date().toISOString() };
+  logger.info("Status retrieved", { status: status });
+
+  return status;
 };

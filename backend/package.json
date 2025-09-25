@@ -5,8 +5,8 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "LOG_LEVEL=DEBUG node --watch src/index.js",
+    "start": "NODE_ENV=production node src/index.js",
+    "dev": "NODE_ENV=development node --watch src/index.js",
     "lint": "eslint ."
   },
   "dependencies": {
