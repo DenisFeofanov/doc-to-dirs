@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
+    "dev": "LOG_LEVEL=DEBUG node --watch src/index.js",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/express": "^5.0.3",
     "eslint": "^9.36.0",
     "globals": "^16.4.0"
   }

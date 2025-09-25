@@ -1,8 +1,9 @@
 import { logger } from "../logger.js";
 
 export default () => {
+  logger.debug("Getting status");
   const payload = { status: "ok", time: new Date().toISOString() };
-  logger.debug("Reporting status", payload);
+  logger.info("Status retrieved", { payload });
 
   return payload;
 };
