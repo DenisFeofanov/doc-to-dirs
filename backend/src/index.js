@@ -1,8 +1,8 @@
 import cors from "cors";
 import express from "express";
-import { getLevel, logger } from "./logger.js";
-import router from "./router.js";
 import config from "./config.js";
+import { logger } from "./logger.js";
+import router from "./router.js";
 
 const app = express();
 const port = config.port;
@@ -43,7 +43,7 @@ app.use((err, _req, res, _next) => {
 app.listen(port, () => {
   logger.info("Server started", {
     port,
-    level: getLevel(),
+    logLevel: logger.level,
     nodeEnv: config.nodeEnv,
   });
 });

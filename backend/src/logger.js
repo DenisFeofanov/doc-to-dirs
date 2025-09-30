@@ -61,7 +61,3 @@ export const logger = winston.createLogger({
   ],
   exitOnError: false,
 });
-
-export function getLevel() {
-  return logger.level;
-}
