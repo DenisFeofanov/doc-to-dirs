@@ -3,7 +3,7 @@ import config from "./config.js";
 
 let logLevel;
 if (config.logLevel) {
-  logLevel = config.logLevel;
+  logLevel = config.logLevel?.toLowerCase?.();
 } else {
   switch (config.nodeEnv) {
     case "production":
