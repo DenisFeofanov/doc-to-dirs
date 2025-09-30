@@ -1,23 +1,23 @@
 import winston from "winston";
+import config from "./config.js";
 
-const nodeEnv = process.env.NODE_ENV?.toLowerCase?.() || "production";
-let levelFromEnv;
-if (process.env.LOG_LEVEL) {
-  levelFromEnv = process.env.LOG_LEVEL.toLowerCase();
+let logLevel;
+if (config.logLevel) {
+  logLevel = config.logLevel;
 } else {
-  switch (nodeEnv) {
+  switch (config.nodeEnv) {
     case "production":
-      levelFromEnv = "info";
+      logLevel = "info";
       break;
     case "development":
-      levelFromEnv = "debug";
+      logLevel = "debug";
       break;
     default:
-      levelFromEnv = "debug";
+      logLevel = "debug";
       break;
   }
 }
-const isDevelopment = nodeEnv === "development";
+const isDevelopment = config.nodeEnv === "development";
 
 const developmentFormat = winston.format.combine(
   winston.format.metadata({
@@ -51,7 +51,7 @@ const productionFormat = winston.format.combine(
 );
 
 export const logger = winston.createLogger({
-  level: levelFromEnv,
+  level: logLevel,
   levels: winston.config.npm.levels,
   format: isDevelopment ? developmentFormat : productionFormat,
   transports: [

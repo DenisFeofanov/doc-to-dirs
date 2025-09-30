@@ -2,9 +2,10 @@ import cors from "cors";
 import express from "express";
 import { getLevel, logger } from "./logger.js";
 import router from "./router.js";
+import config from "./config.js";
 
 const app = express();
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const port = config.port;
 
 app.use(cors());
 app.use(express.json());
@@ -43,6 +44,6 @@ app.listen(port, () => {
   logger.info("Server started", {
     port,
     level: getLevel(),
-    nodeEnv: process.env.NODE_ENV,
+    nodeEnv: config.nodeEnv,
   });
 });
