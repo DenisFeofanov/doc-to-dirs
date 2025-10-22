@@ -6,8 +6,16 @@ Create particular directory structure for uploaded files
 
 1. Run the application
 
+   - Development
+
    ```bash
-   docker compose up -d
+   docker compose -f docker-compose.core.yaml -f docker-compose.dev.yaml up -d
+   ```
+
+   - Production
+
+   ```bash
+   docker compose -f docker-compose.core.yaml -f docker-compose.prod.yaml up -d
    ```
 
 2. Access the services
