@@ -11,3 +11,9 @@ services:
             - node_modules/
         - action: rebuild
           path: ./backend/package.json
+  frontend:
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /usr/share/nginx/html
