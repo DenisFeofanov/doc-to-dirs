@@ -9,13 +9,13 @@ Create particular directory structure for uploaded files
    - Development
 
    ```bash
-   docker compose -f docker-compose.core.yaml -f docker-compose.dev.yaml up -d
+   docker compose -f compose.core.yaml -f compose.dev.yaml up --watch
    ```
 
    - Production
 
    ```bash
-   docker compose -f docker-compose.core.yaml -f docker-compose.prod.yaml up -d
+   docker compose -f compose.core.yaml -f compose.prod.yaml up -d
    ```
 
 2. Access the services
@@ -24,32 +24,7 @@ Create particular directory structure for uploaded files
    - Backend API: http://localhost:3000
 
 3. Stop the application
+
    ```bash
-   docker compose down
+   docker compose -p doc-to-dirs down
    ```
-
-## Reading Logs
-
-The backend uses Winston for structured JSON logging.
-
-```bash
-# View all logs
-docker compose logs backend
-
-# Pretty-print JSON logs with jq
-docker compose logs --no-log-prefix backend | jq -Rr 'fromjson? | .'
-```
-
-## Development
-
-### Backend
-
-`cd backend`
-
-1. Install Node.js and dependencies
-
-`npm ci`
-
-2. Run server locally
-
-`npm run start`
