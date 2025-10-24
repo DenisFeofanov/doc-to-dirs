@@ -1,0 +1,26 @@
+{
+  "name": "doc-to-dirs",
+  "version": "1.0.0",
+  "description": "Create particular directory structure for uploaded files",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenisFeofanov/doc-to-dirs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DenisFeofanov/doc-to-dirs/issues"
+  },
+  "homepage": "https://github.com/DenisFeofanov/doc-to-dirs#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "eslint": "^9.38.0",
+    "globals": "^16.4.0"
+  }
+}

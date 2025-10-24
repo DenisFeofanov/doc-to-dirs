@@ -7,7 +7,7 @@ export default defineConfig([
     files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
     extends: ["js/recommended"],
-    languageOptions: { globals: globals.node },
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
     rules: {
       "no-unused-vars": ["warn", { args: "all", argsIgnorePattern: "^_" }],
     },
