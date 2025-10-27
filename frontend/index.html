@@ -1,75 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Doc to dirs</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <style>
-      body {
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
-          Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji",
-          "Segoe UI Emoji";
-        margin: 2rem;
-      }
-      .card {
-        max-width: 540px;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        padding: 1rem 1.25rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      }
-      .status {
-        font-size: 1.1rem;
-        margin: 0.25rem 0;
-      }
-      .muted {
-        color: #6b7280;
-      }
-      code {
-        background: #f3f4f6;
-        padding: 0.1rem 0.3rem;
-        border-radius: 6px;
-      }
-      .ok {
-        color: #059669;
-      }
-      .error {
-        color: #dc2626;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="card">
-      <h1>Загрузить файлы</h1>
-      <form id="uploadForm">
-        <div style="margin: 0.5rem 0">
-          <label for="reportFile">Файл отчета (.xls)</label><br />
-          <input
-            id="reportFile"
-            name="reportFile"
-            type="file"
-            accept=".xls"
-            required
-          />
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h1>Загрузить файлы</h1>
+          <p class="subtitle">
+            Выберите тип отправки и загрузите необходимые файлы
+          </p>
         </div>
-        <div style="margin: 0.5rem 0">
-          <label for="layoutFile">Файл разбивки (.dxf / .dwg)</label><br />
-          <input
-            id="layoutFile"
-            name="layoutFile"
-            type="file"
-            accept=".dxf,.dwg"
-            required
-          />
+
+        <div class="switch-container">
+          <span class="switch-label">Тип отправки</span>
+          <div class="switch-options">
+            <div class="switch-option">
+              <input
+                type="radio"
+                id="typeRkd"
+                name="uploadType"
+                value="rkd"
+                checked
+              />
+              <label for="typeRkd">Отправка на РКД</label>
+            </div>
+            <div class="switch-option has-tooltip">
+              <input
+                type="radio"
+                id="typeSketch"
+                name="uploadType"
+                value="sketch"
+                disabled
+              />
+              <label for="typeSketch">Отправка на эскизирование</label>
+              <span class="tooltip">В разработке</span>
+            </div>
+          </div>
         </div>
-        <div style="margin: 0.5rem 0">
-          <label for="otherFiles">Остальные файлы (любые)</label><br />
-          <input id="otherFiles" name="otherFiles" type="file" multiple />
-        </div>
-        <button type="submit">Загрузить</button>
-      </form>
-      <p id="result" class="status muted" style="margin-top: 0.75rem"></p>
+
+        <form id="uploadForm">
+          <div class="form-group">
+            <label for="reportFile">Файл отчета (.xls)</label>
+            <input
+              id="reportFile"
+              name="reportFile"
+              type="file"
+              accept=".xls"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="layoutFile">Файл разбивки (.dxf / .dwg)</label>
+            <input
+              id="layoutFile"
+              name="layoutFile"
+              type="file"
+              accept=".dxf,.dwg"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="otherFiles">Остальные файлы (любые)</label>
+            <input id="otherFiles" name="otherFiles" type="file" multiple />
+          </div>
+          <button type="submit" class="submit-button">Загрузить</button>
+        </form>
+        <div id="result" class="status"></div>
+      </div>
     </div>
     <script src="/script.js" defer></script>
   </body>

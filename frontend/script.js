@@ -1,8 +1,9 @@
 const form = document.getElementById("uploadForm");
 const resultElement = document.getElementById("result");
 
-form?.addEventListener("submit", async e => {
-  e.preventDefault();
+form?.addEventListener("submit", async event => {
+  event.preventDefault();
+
   resultElement.classList.remove("ok", "error");
   resultElement.classList.add("muted");
   resultElement.textContent = "Загрузка…";
@@ -14,16 +15,16 @@ form?.addEventListener("submit", async e => {
       body: formData,
     });
     if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err?.error || `HTTP ${response.status}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData?.error || `HTTP ${response.status}`);
     }
     const data = await response.json();
     resultElement.textContent = `ID загрузки: ${data.uploadId}`;
     resultElement.classList.remove("muted");
     resultElement.classList.add("ok");
     form.reset();
-  } catch (err) {
-    resultElement.textContent = `Ошибка: ${err.message}`;
+  } catch (error) {
+    resultElement.textContent = `Ошибка: ${error.message}`;
     resultElement.classList.remove("muted");
     resultElement.classList.add("error");
   }
