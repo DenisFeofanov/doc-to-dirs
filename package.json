@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docker:dev": "docker compose -f compose.core.yaml -f compose.dev.yaml up --watch",
+    "docker:prod": "docker compose -f compose.core.yaml -f compose.prod.yaml up -d"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --max-warnings=0"

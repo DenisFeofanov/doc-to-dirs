@@ -1,5 +1,6 @@
 import express from "express";
 import getStatus from "./services/getStatus.js";
+import postFiles from "./controllers/postFiles.js";
 
 const router = express.Router();
 
@@ -12,5 +13,7 @@ router.get("/status", (_req, res) => {
 
   res.json(payload);
 });
+
+router.post("/files", postFiles);
 
 export default router;

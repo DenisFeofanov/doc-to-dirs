@@ -10,12 +10,12 @@ form?.addEventListener("submit", async event => {
 
   const formData = new FormData(form);
   try {
-    const response = await fetch("http://localhost:3000/upload", {
+    const response = await fetch("http://localhost:3000/files", {
       method: "POST",
       body: formData,
     });
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
+      const errorData = await response.json();
       throw new Error(errorData?.error || `HTTP ${response.status}`);
     }
     const data = await response.json();
