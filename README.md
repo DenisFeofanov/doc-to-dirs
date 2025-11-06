@@ -7,7 +7,7 @@ Create particular directory structure for uploaded files
 1. Install project dependencies for development
 
    ```bash
-   cd /doc-to/dirs
+   cd /doc-to-dirs
    npm i
    ```
 
